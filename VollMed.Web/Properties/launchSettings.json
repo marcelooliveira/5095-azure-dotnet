@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "WebClient": {
+    "https": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
