@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VollMed.WebAPI", "VollMed.WebAPI.csproj", "{6DC09AC2-E233-3E5F-821E-71407D2CC1F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DC09AC2-E233-3E5F-821E-71407D2CC1F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC09AC2-E233-3E5F-821E-71407D2CC1F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC09AC2-E233-3E5F-821E-71407D2CC1F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC09AC2-E233-3E5F-821E-71407D2CC1F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A335E41-8845-4B63-BBCD-EE2EBF38364F}
+	EndGlobalSection
+EndGlobal
