@@ -421,3 +421,4 @@ is-signing-key-*
 /VollMed.Web/appsettings.Development.json
 /VollMed.WebAPI/appsettings.Development.json
 /VollMed.WebAPI/Properties/ServiceDependencies/VollMedWebAPI20250924224110 - Zip Deploy/profile.arm.json
+/VollMed.Web/Properties/ServiceDependencies/VollMedWeb20250925211811 - Zip Deploy/profile.arm.json
