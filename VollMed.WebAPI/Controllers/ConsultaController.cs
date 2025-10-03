@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VollMed.Web.Dtos;
 using VollMed.Web.Exceptions;
 using VollMed.Web.Interfaces;
 
 namespace VollMed.Web.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ConsultaController : ControllerBase

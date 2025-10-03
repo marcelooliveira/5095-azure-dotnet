@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Web;
 using VollMed.Web.Data;
 using VollMed.Web.Interfaces;
 using VollMed.Web.Repositories;
 using VollMed.Web.Services;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,10 +26,23 @@ builder.Services.AddTransient<IConsultaService, ConsultaService>();
 
 builder.Services.AddControllers();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(options => {
+        builder.Configuration.Bind("AzureAd", options);
+    },
+    options => {
+        builder.Configuration.Bind("AzureAd", options);
+    });
+builder.Services.AddAuthorization();
+
+
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 

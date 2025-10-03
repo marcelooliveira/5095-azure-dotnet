@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Identity.Web;
+using System.IdentityModel.Tokens.Jwt;
 using VollMed.Web.Filters;
 using VollMed.Web.Interfaces;
 using VollMed.Web.Services;
@@ -29,6 +32,15 @@ builder.Services.AddHttpClient(
     })
     .SetHandlerLifetime(TimeSpan.FromMinutes(5));
 
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+builder.Services
+    .AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddDownstreamApi("VollMed.WebApi", builder.Configuration.GetSection("VollMed.WebApi"))
+    .AddInMemoryTokenCaches();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -44,6 +56,9 @@ else
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
