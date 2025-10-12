@@ -13,12 +13,13 @@ namespace VollMed.Web.Controllers
     {
         private readonly IConsultaService _consultaservice;
         private readonly IMedicoService _medicoService;
-     
+        private readonly ILogger<ConsultaController> _logger;
 
-        public ConsultaController(IConsultaService consultaService, IMedicoService medicoService)
+        public ConsultaController(IConsultaService consultaService, IMedicoService medicoService, ILogger<ConsultaController> logger)
         {
             _consultaservice = consultaService;
-            _medicoService = medicoService;            
+            _medicoService = medicoService;
+            this._logger = logger;
         }
 
         [HttpGet("listar")]
@@ -50,6 +51,7 @@ namespace VollMed.Web.Controllers
             try
             {
                 await _consultaservice.CadastrarAsync(dados);
+                _logger.LogInformation("Consulta criada para o Paciente {0} com o médico {1} na data/hora {2} {3}", dados.Paciente, dados.IdMedico, dados.Data.ToShortDateString(), dados.Data.ToShortTimeString());
                 return Ok(dados);
             }
             catch (RegraDeNegocioException ex)

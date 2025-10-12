@@ -1,3 +1,5 @@
+using Azure.Monitor.OpenTelemetry.AspNetCore;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
@@ -34,6 +36,25 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         builder.Configuration.Bind("AzureAd", options);
     });
 builder.Services.AddAuthorization();
+
+
+// Habilita o Application Insights (telemetria automática)
+builder.Services.AddApplicationInsightsTelemetry();
+
+// Configura telemetria
+builder.Services.Configure<TelemetryConfiguration>((config) =>
+{
+    config.TelemetryChannel.DeveloperMode = true; // flush imediato
+});
+
+// Habilita o provedor de logging do Application Insights
+builder.Logging.AddApplicationInsights();
+
+builder.Services.AddOpenTelemetry()
+    .UseAzureMonitor(o =>
+    {
+        o.ConnectionString = builder.Configuration["ApplicationInsights:ConnectionString"];
+    });
 
 
 var app = builder.Build();
