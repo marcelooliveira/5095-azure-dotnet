@@ -29,3 +29,30 @@ public class Function1
         await messageActions.CompleteMessageAsync(message);
     }
 }
+
+public class ConsultaQueueMessage
+{
+    public int MedicoId { get; set; }
+    public int Ano { get; set; }
+    public int Mes { get; set; }
+}
+
+public class ConsultaPorMedico
+{
+    public long MedicoId { get; set; }
+    public string MedicoNome { get; set; }
+    public DateTime Data { get; set; }
+    public int QtdeConsultas { get; set; }
+    public decimal Honorarios { get; set; }
+}
+
+public record ResultadoMensal
+(
+    string id,
+    long medicoId,
+    string medicoNome,
+    int ano,
+    int mes,
+    int qtdeConsultas,
+    decimal honorarios
+);
